@@ -35,26 +35,30 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 // Associations Setting
-const { User, Post, Comment, Like } = sequelize.models;
+const { user, post, category, Comment, Like } = sequelize.models;
 
 // one to many
-User.hasMany(Post, { foreignKey: 'user_id' });
-Post.belongsTo(User, { foreignKey: 'user_id' });
+user.hasMany(post, { foreignKey: 'user_id' });
+post.belongsTo(user, { foreignKey: 'user_id' });
+
+category.hasMany(post, { foreignKey: 'category_id' });
+post.belongsTo(category, { foreignKey: 'category_id' });
+
 
 // one to many
-User.hasMany(Comment, { foreignKey: 'user_id' });
-Comment.belongsTo(User, { foreignKey: 'user_id' });
+//User.hasMany(Comment, { foreignKey: 'user_id' });
+//Comment.belongsTo(User, { foreignKey: 'user_id' });
+//
+//// one to many
+//Post.hasMany(Comment, { foreignKey: 'post_id' });
+//Comment.belongsTo(Post, { foreignKey: 'post_id' });
+//
+//// one to many
+//User.hasMany(Like, { foreignKey: 'user_id' });
+//Like.belongsTo(User, { foreignKey: 'user_id' });
 
 // one to many
-Post.hasMany(Comment, { foreignKey: 'post_id' });
-Comment.belongsTo(Post, { foreignKey: 'post_id' });
-
-// one to many
-User.hasMany(Like, { foreignKey: 'user_id' });
-Like.belongsTo(User, { foreignKey: 'user_id' });
-
-// one to many
-Post.hasMany(Like, { foreignKey: 'post_id' });
-Like.belongsTo(Post, { foreignKey: 'post_id' });
+//Post.hasMany(Like, { foreignKey: 'post_id' });
+//Like.belongsTo(Post, { foreignKey: 'post_id' });
 
 module.exports = db;

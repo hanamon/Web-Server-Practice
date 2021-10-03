@@ -24,9 +24,10 @@ module.exports = {
       post_content: {
         type: Sequelize.TEXT('long')
       },
-      category_name: {
+      category_id: {
         allowNull: false,
-        type: Sequelize.STRING(255)
+        type: Sequelize.INTEGER(11),
+        references:{ model: 'categories', key: 'category_id' }
       },
       post_comments: {
         type: Sequelize.INTEGER(11)
