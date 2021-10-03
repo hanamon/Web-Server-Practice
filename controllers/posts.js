@@ -4,7 +4,11 @@ const { Op } = require('sequelize');
 module.exports = {
   get: async (req, res) => {
     try {
-      let { category, paged, postNumber, sort, search } = req.query;
+      let { category, paged, postNumber, order, sort, search } = req.query;
+
+      // Sorting
+      if (order !== 'views' && order !== 'likes' && order !== 'comments') order = null;
+      if (sort !== 'DESC' && sort !== 'ASC' && sort !== 'desc' && sort !== 'asc') sort = null;
 
       // Pagenation
       isNaN(paged) || Number(paged) < 1 ? paged = 1 : paged = Number(paged);
@@ -34,6 +38,9 @@ module.exports = {
             model: models.user,
             attributes: ['user_nickname', 'user_image']
           }
+        ],
+        order: [
+          order ? sort ? ['post_' + order, sort] : ['post_' + order, 'DESC'] : sort ? ['post_views', sort] : ['post_views', 'DESC']
         ],
         offset: (paged-1)*postNumber, 
         limit: postNumber,

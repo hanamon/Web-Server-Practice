@@ -49,7 +49,7 @@ module.exports = {
         post_title: '솔직히 말해서 친구 사이에 어디까지?',
         post_content: '너무 선 넘는 듯...',
         category_id: 2,
-        post_comments: 5,
+        post_comments: 1,
         post_likes: 1,
         post_views: 4
       },
@@ -59,7 +59,7 @@ module.exports = {
         post_title: '친구 따라 강남가는 것에 대한 열분들의 생각은 어떠신가요??',
         post_content: '저는 친구 따라 강남 보다는 강서 가는 것이 더 좋은데 꼭 강남가야하나요?',
         category_id: 2,
-        post_comments: 5,
+        post_comments: 35,
         post_likes: 5,
         post_views: 101
       },
@@ -99,7 +99,7 @@ module.exports = {
         post_title: '제 친구를 응원합니다.',
         post_content: '제 친구는 열심히 코딩 공부를 합니다. 항상 응원합니다!!!',
         category_id: 2,
-        post_comments: 5,
+        post_comments: 2,
         post_likes: 22,
         post_views: 102
       },

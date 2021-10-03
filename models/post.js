@@ -35,9 +35,9 @@ module.exports = (sequelize, DataTypes) => {
     post_content: {
       type: DataTypes.TEXT('long')
     },
-    category_name: {
+    category_id: {
       allowNull: false,
-      type: DataTypes.STRING(255)
+      type: DataTypes.INTEGER(11)
     },
     post_comments: {
       type: DataTypes.INTEGER(11)
