@@ -34,4 +34,27 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+// Associations Setting
+const { User, Post, Comment, Like } = sequelize.models;
+
+// one to many
+User.hasMany(Post, { foreignKey: 'user_id' });
+Post.belongsTo(User, { foreignKey: 'user_id' });
+
+// one to many
+User.hasMany(Comment, { foreignKey: 'user_id' });
+Comment.belongsTo(User, { foreignKey: 'user_id' });
+
+// one to many
+Post.hasMany(Comment, { foreignKey: 'post_id' });
+Comment.belongsTo(Post, { foreignKey: 'post_id' });
+
+// one to many
+User.hasMany(Like, { foreignKey: 'user_id' });
+Like.belongsTo(User, { foreignKey: 'user_id' });
+
+// one to many
+Post.hasMany(Like, { foreignKey: 'post_id' });
+Like.belongsTo(Post, { foreignKey: 'post_id' });
+
 module.exports = db;
