@@ -5,7 +5,7 @@ module.exports = {
   get: async (req, res) => {
     try {
       // Query Parameters
-      let { category, paged, postNumber, order, sort, search } = req.query;
+      let { category, paged, postnumber, order, sort, search } = req.query;
 
       // Sorting
       if (order !== 'views' && order !== 'likes' && order !== 'comments') order = null;
@@ -13,7 +13,7 @@ module.exports = {
 
       // Pagenation
       isNaN(paged) || Number(paged) < 1 ? paged = 1 : paged = Number(paged);
-      isNaN(postNumber) ? postNumber = 9 : postNumber < 1 ? postNumber = 1 : postNumber = Number(postNumber);
+      isNaN(postnumber) ? postnumber = 9 : postnumber < 1 ? postnumber = 1 : postnumber = Number(postnumber);
 
       // Find All Posts
       const posts = await models.post.findAndCountAll({
@@ -44,8 +44,8 @@ module.exports = {
         order: [
           order ? sort ? ['post_' + order, sort] : ['post_' + order, 'ASC'] : sort ? ['post_id', sort] : ['post_id', 'DESC']
         ],
-        offset: (paged-1)*postNumber, 
-        limit: postNumber,
+        offset: (paged-1)*postnumber, 
+        limit: postnumber,
         //raw: true
       });
 
