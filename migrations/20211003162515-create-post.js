@@ -30,13 +30,19 @@ module.exports = {
         references:{ model: 'categories', key: 'category_id' }
       },
       post_comments: {
-        type: Sequelize.INTEGER(11)
+        allowNull: false,
+        type: Sequelize.INTEGER(11),
+        defaultValue: 0
       },
       post_likes: {
-        type: Sequelize.INTEGER(11)
+        allowNull: false,
+        type: Sequelize.INTEGER(11),
+        defaultValue: 0
       },
       post_views: {
-        type: Sequelize.INTEGER(11)
+        allowNull: false,
+        type: Sequelize.INTEGER(11),
+        defaultValue: 0
       },
       created_at: {
         allowNull: false,

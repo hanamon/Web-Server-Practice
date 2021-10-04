@@ -4,6 +4,7 @@ const { Op } = require('sequelize');
 module.exports = {
   get: async (req, res) => {
     try {
+      // Query Parameters
       let { category, paged, postNumber, order, sort, search } = req.query;
 
       // Sorting
@@ -14,6 +15,7 @@ module.exports = {
       isNaN(paged) || Number(paged) < 1 ? paged = 1 : paged = Number(paged);
       isNaN(postNumber) ? postNumber = 9 : postNumber < 1 ? postNumber = 1 : postNumber = Number(postNumber);
 
+      // Find All Posts
       const posts = await models.post.findAndCountAll({
         where: {
           [Op.and]: [
@@ -25,7 +27,7 @@ module.exports = {
             } : null
           ]
         },
-        attributes: ['post_id', 'post_title', 'post_image', 'post_comments', 'post_likes', 'post_views'],
+        attributes: ['post_id', 'post_title', 'post_image', 'post_comments', 'post_likes', 'post_views', 'created_at', 'updated_at'],
         include: [
           {
             // categories table Join
@@ -36,15 +38,15 @@ module.exports = {
           {
             // users table Join
             model: models.user,
-            attributes: ['user_nickname', 'user_image']
+            attributes: ['user_login', 'user_nickname', 'user_image']
           }
         ],
         order: [
-          order ? sort ? ['post_' + order, sort] : ['post_' + order, 'DESC'] : sort ? ['post_views', sort] : ['post_views', 'DESC']
+          order ? sort ? ['post_' + order, sort] : ['post_' + order, 'ASC'] : sort ? ['post_id', sort] : ['post_id', 'DESC']
         ],
         offset: (paged-1)*postNumber, 
         limit: postNumber,
-        raw: true
+        //raw: true
       });
 
       // Response Posts
