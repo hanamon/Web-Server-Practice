@@ -22,6 +22,7 @@ app.use(cors({
 
 // Routing
 app.use('/posts', router.postRouter);
+app.use('/users', router.userRouter);
 
 // Server Running
 let server;
