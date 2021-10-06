@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const { user } = require('../models');
 const { Op } = require('sequelize');
 const { generateAccessToken, sendAccessToken } = require('./tokenFunction');
+const userAuthen = require('./authentication/userAuthen');
 
 module.exports = {
   signin: async (req, res) => {

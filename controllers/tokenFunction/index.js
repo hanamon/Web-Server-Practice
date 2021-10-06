@@ -7,5 +7,13 @@ module.exports = {
   },
   sendAccessToken: (res, accessToken) => {
     res.cookie('accessToken', accessToken, { httpOnly: true });
+  },
+  checkAccessToken: (accessToken) => {
+    try {
+      return jwt.verify(accessToken, process.env.ACCESS_SECRET);
+    }
+    catch (err) {
+      return null;
+    }
   }
 };
